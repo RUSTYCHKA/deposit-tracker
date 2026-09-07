@@ -16,6 +16,15 @@ DATA_DIR = ROOT_DIR / "data"
 GENERATED_DIR = ROOT_DIR / "frontend" / "src" / "shared" / "data"
 
 
+def json_default(value):
+    if isinstance(value, Decimal):
+        return float(value)
+
+    raise TypeError(
+        f"Object of type {type(value).__name__} is not JSON serializable"
+    )
+
+
 def load_json(filename: str):
     with open(DATA_DIR / filename, encoding="utf-8") as file:
         return json.load(file)
@@ -34,6 +43,7 @@ def save_json(filename: str, data):
             file,
             ensure_ascii=False,
             indent=2,
+            default=json_default,
         )
 
 

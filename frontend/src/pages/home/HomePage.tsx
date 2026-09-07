@@ -90,44 +90,11 @@ export function HomePage() {
           <span>Текущая инфляция</span>
 
           <strong>
-            {inflationRate.toFixed(1)}%
+            {inflationRate}%
           </strong>
         </div>
       </section>
 
-      <section className="calculator">
-        <div>
-          <label htmlFor="amount">
-            Сумма размещения
-          </label>
-
-          <div className="amount-input">
-            <input
-              id="amount"
-              type="number"
-              min="0"
-              value={amount}
-              onChange={(event) =>
-                setAmount(event.target.value)
-              }
-            />
-
-            <span>₽</span>
-          </div>
-        </div>
-
-        <div className="calculator-info">
-          Рассчитываем доходность для суммы{' '}
-          <strong>
-            {amount
-              ? new Intl.NumberFormat(
-                  'ru-RU',
-                ).format(Number(amount))
-              : '0'}{' '}
-            ₽
-          </strong>
-        </div>
-      </section>
 
       <section className="products">
         <div className="section-header">

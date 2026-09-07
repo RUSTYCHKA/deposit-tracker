@@ -10,5 +10,17 @@
     "name": "Сбербанк",
     "shortName": "Сбер",
     "website": "https://www.sberbank.ru"
+  },
+  {
+    "id": "vtb",
+    "name": "ВТБ",
+    "shortName": "ВТБ",
+    "website": "https://www.vtb.ru"
+  },
+  {
+    "id": "alfa",
+    "name": "Альфа-Банк",
+    "shortName": "Альфа",
+    "website": "https://alfabank.ru"
   }
 ]

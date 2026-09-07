@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-09-07",
-  "inflationRate": 7.8,
+  "inflationRate": 5.98,
   "products": [
     {
       "id": "tbank-savings",
@@ -18,7 +18,7 @@
       "termMonths": 12,
       "advertisedRate": 14.0,
       "effectiveRate": 14.0,
-      "realRate": 5.75,
+      "realRate": 7.57,
       "profitFor100k": 14000.0,
       "capitalization": false,
       "replenishment": true,
@@ -57,7 +57,7 @@
       "termMonths": 6,
       "advertisedRate": 13.0,
       "effectiveRate": 13.8,
-      "realRate": 5.57,
+      "realRate": 7.38,
       "profitFor100k": 6678.61,
       "capitalization": true,
       "replenishment": false,

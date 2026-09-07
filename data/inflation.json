@@ -13,5 +13,10 @@
     "date": "2026-03",
     "value": 7.8,
     "source": "manual"
+  },
+  {
+    "date": "2026-07",
+    "value": 5.98,
+    "source": "manual"
   }
 ]
