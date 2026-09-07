@@ -1,1 +1,1 @@
-export type { Deposit } from './types';
+export type { Deposit } from "./types";

@@ -1,1 +1,1 @@
-export type { Bank } from './types';
+export type { Bank } from "./types";

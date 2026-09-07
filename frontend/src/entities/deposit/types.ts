@@ -3,7 +3,7 @@ export interface Deposit {
   bankId: string;
   name: string;
 
-  type: 'deposit' | 'savings-account';
+  type: "deposit" | "savings-account";
 
   rate: number;
 
