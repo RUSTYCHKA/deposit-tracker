@@ -678,3 +678,315 @@ button {
 
   color: #737373;
 }
+
+.deposit-link {
+  color: #171717;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.deposit-link:hover {
+  text-decoration: underline;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 28px;
+  color: #737373;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: #171717;
+}
+
+.deposit-details {
+  max-width: 1000px;
+}
+
+.deposit-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+.deposit-details-header h1 {
+  margin: 8px 0 6px;
+  font-size: 42px;
+  letter-spacing: -0.03em;
+}
+
+.deposit-bank {
+  margin: 0;
+  color: #737373;
+  font-size: 16px;
+}
+
+.deposit-main-rate {
+  text-align: right;
+}
+
+.deposit-main-rate span {
+  display: block;
+  margin-bottom: 6px;
+  color: #737373;
+  font-size: 13px;
+}
+
+.deposit-main-rate strong {
+  font-size: 42px;
+}
+
+.deposit-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-bottom: 24px;
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.deposit-metrics > div {
+  padding: 20px;
+  border-right: 1px solid #e5e5e5;
+}
+
+.deposit-metrics > div:last-child {
+  border-right: 0;
+}
+
+.deposit-metrics span {
+  display: block;
+  margin-bottom: 8px;
+  color: #737373;
+  font-size: 12px;
+}
+
+.deposit-metrics strong {
+  font-size: 17px;
+}
+
+.deposit-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.details-card {
+  padding: 28px;
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
+  background: white;
+}
+
+.details-card h2 {
+  margin: 0 0 20px;
+  font-size: 20px;
+}
+
+.details-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.details-list > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.details-list > div:first-child {
+  padding-top: 0;
+}
+
+.details-list > div:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.details-list span {
+  color: #737373;
+  font-size: 14px;
+}
+
+.details-list strong {
+  font-size: 14px;
+}
+
+.details-description {
+  margin: -8px 0 24px;
+  color: #737373;
+  line-height: 1.6;
+}
+
+.rate-period-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.rate-period {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.rate-period:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.rate-period:first-child {
+  padding-top: 0;
+}
+
+.rate-period span {
+  color: #737373;
+}
+
+.rate-period strong {
+  font-size: 16px;
+}
+
+.profit-highlight {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.profit-highlight strong {
+  font-size: 32px;
+}
+
+.profit-highlight span {
+  color: #737373;
+  font-size: 14px;
+}
+
+.data-source {
+  margin: 20px 0 0;
+  color: #a3a3a3;
+  font-size: 12px;
+}
+
+@media (max-width: 700px) {
+  .deposit-details-header {
+    flex-direction: column;
+  }
+
+  .deposit-details-header h1 {
+    font-size: 32px;
+  }
+
+  .deposit-main-rate {
+    text-align: left;
+  }
+
+  .deposit-main-rate strong {
+    font-size: 34px;
+  }
+
+  .deposit-metrics {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .deposit-metrics > div:nth-child(2) {
+    border-right: 0;
+  }
+
+  .deposit-metrics > div:nth-child(-n + 2) {
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .deposit-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profit-highlight {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .details-calculator-results {
+  grid-template-columns: 1fr 1fr;
+}
+
+.details-calculator-results > div:nth-child(2) {
+  border-right: 0;
+}
+
+.details-calculator-results > div:nth-child(-n + 2) {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.details-calculator-results > div:first-child {
+  padding-left: 20px;
+}
+}
+
+
+.details-calculator {
+  margin-top: 24px;
+}
+
+.details-calculator-header {
+  margin-bottom: 24px;
+}
+
+.details-calculator-header h2 {
+  margin: 8px 0;
+}
+
+.details-calculator-header p {
+  margin: 0;
+  color: #737373;
+}
+
+.details-calculator-input {
+  max-width: 400px;
+  margin-bottom: 28px;
+}
+
+.details-calculator-input > label {
+  display: block;
+  margin-bottom: 8px;
+  color: #737373;
+  font-size: 13px;
+}
+
+.details-calculator-results {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid #e5e5e5;
+}
+
+.details-calculator-results > div {
+  padding: 20px;
+  border-right: 1px solid #e5e5e5;
+}
+
+.details-calculator-results > div:first-child {
+  padding-left: 0;
+}
+
+.details-calculator-results > div:last-child {
+  border-right: 0;
+}
+
+.details-calculator-results span {
+  display: block;
+  margin-bottom: 8px;
+  color: #737373;
+  font-size: 12px;
+}
+
+.details-calculator-results strong {
+  font-size: 18px;
+}

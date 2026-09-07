@@ -1,4 +1,5 @@
 import type { Deposit } from '@/entities/deposit';
+import { Link } from 'react-router-dom';
 
 interface DepositTableProps {
   deposits: Deposit[];
@@ -55,7 +56,14 @@ export function DepositTable({
                 <strong>{deposit.bank.shortName}</strong>
               </td>
 
-              <td>{deposit.name}</td>
+              <td>
+                <Link
+                  to={`/deposit/${deposit.id}`}
+                  className="deposit-link"
+                >
+                  {deposit.name}
+                </Link>
+              </td>
 
               <td>
                 <span className="type-badge">
