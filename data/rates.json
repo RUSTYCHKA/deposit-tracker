@@ -1,0 +1,36 @@
+[
+  {
+    "productId": "tbank-savings",
+    "validFrom": "2026-09-01",
+    "validTo": null,
+    "periods": [
+      {
+        "fromMonth": 0,
+        "toMonth": 12,
+        "annualRate": 14
+      }
+    ],
+    "source": {
+      "type": "manual",
+      "url": null,
+      "checkedAt": "2026-09-07"
+    }
+  },
+  {
+    "productId": "sber-deposit-6m",
+    "validFrom": "2026-09-01",
+    "validTo": null,
+    "periods": [
+      {
+        "fromMonth": 0,
+        "toMonth": 6,
+        "annualRate": 13
+      }
+    ],
+    "source": {
+      "type": "manual",
+      "url": null,
+      "checkedAt": "2026-09-07"
+    }
+  }
+]

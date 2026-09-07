@@ -1,0 +1,14 @@
+[
+  {
+    "id": "tbank",
+    "name": "Т-Банк",
+    "shortName": "Т-Банк",
+    "website": "https://www.tbank.ru"
+  },
+  {
+    "id": "sber",
+    "name": "Сбербанк",
+    "shortName": "Сбер",
+    "website": "https://www.sberbank.ru"
+  }
+]

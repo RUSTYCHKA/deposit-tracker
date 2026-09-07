@@ -1,0 +1,56 @@
+[
+  {
+    "id": "tbank-savings",
+    "bankId": "tbank",
+    "name": "Накопительный счет",
+    "type": "savings-account",
+    "currency": "RUB",
+    "minAmount": 0,
+    "maxAmount": null,
+    "terms": {
+      "replenishment": true,
+      "partialWithdrawal": true,
+      "capitalization": false
+    },
+    "operations": {
+      "earlyClosureAllowed": true,
+      "earlyClosureRate": 0
+    },
+    "conditions": {
+      "newCustomer": false,
+      "cardRequired": false,
+      "monthlySpendingRequired": false,
+      "salaryProjectRequired": false,
+      "subscriptionRequired": false,
+      "onlineOpening": true
+    },
+    "status": "active"
+  },
+  {
+    "id": "sber-deposit-6m",
+    "bankId": "sber",
+    "name": "Вклад на 6 месяцев",
+    "type": "deposit",
+    "currency": "RUB",
+    "minAmount": 100000,
+    "maxAmount": null,
+    "terms": {
+      "replenishment": false,
+      "partialWithdrawal": false,
+      "capitalization": true
+    },
+    "operations": {
+      "earlyClosureAllowed": true,
+      "earlyClosureRate": 0.01
+    },
+    "conditions": {
+      "newCustomer": false,
+      "cardRequired": false,
+      "monthlySpendingRequired": false,
+      "salaryProjectRequired": false,
+      "subscriptionRequired": false,
+      "onlineOpening": true
+    },
+    "status": "active"
+  }
+]
