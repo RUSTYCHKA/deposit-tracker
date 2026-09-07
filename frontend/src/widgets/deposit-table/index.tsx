@@ -1,0 +1,1 @@
+export { DepositTable } from './ui/DepositTable';
