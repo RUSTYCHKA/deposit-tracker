@@ -1,20 +1,48 @@
+export interface DepositConditions {
+  newCustomer: boolean;
+  cardRequired: boolean;
+  monthlySpendingRequired: boolean;
+  salaryProjectRequired: boolean;
+  subscriptionRequired: boolean;
+  onlineOpening: boolean;
+}
+
+export interface DepositBank {
+  id: string;
+  name: string;
+  shortName: string;
+  website: string;
+}
+
 export interface Deposit {
   id: string;
-  bankId: string;
+
+  bank: DepositBank;
+
   name: string;
 
-  type: "deposit" | "savings-account";
+  type: 'deposit' | 'savings-account';
 
-  rate: number;
+  currency: string;
 
   minAmount: number;
-  maxAmount?: number;
+  maxAmount: number | null;
 
-  termMonths?: number;
+  termMonths: number;
+
+  advertisedRate: number;
+  effectiveRate: number;
+  realRate: number;
+
+  profitFor100k: number;
 
   capitalization: boolean;
   replenishment: boolean;
   partialWithdrawal: boolean;
 
-  conditions: string[];
+  conditions: DepositConditions;
+
+  status: 'active' | 'inactive';
+
+  rateValidFrom: string;
 }

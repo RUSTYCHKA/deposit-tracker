@@ -1,0 +1,70 @@
+{
+  "generatedAt": "2026-09-07",
+  "inflationRate": 7.8,
+  "products": [
+    {
+      "id": "tbank-savings",
+      "bank": {
+        "id": "tbank",
+        "name": "Т-Банк",
+        "shortName": "Т-Банк",
+        "website": "https://www.tbank.ru/"
+      },
+      "name": "Накопительный счет",
+      "type": "savings-account",
+      "currency": "RUB",
+      "minAmount": 0.0,
+      "maxAmount": null,
+      "termMonths": 12,
+      "advertisedRate": 14.0,
+      "effectiveRate": 14.0,
+      "realRate": 5.75,
+      "profitFor100k": 14000.0,
+      "capitalization": false,
+      "replenishment": true,
+      "partialWithdrawal": true,
+      "conditions": {
+        "newCustomer": false,
+        "cardRequired": false,
+        "monthlySpendingRequired": false,
+        "salaryProjectRequired": false,
+        "subscriptionRequired": false,
+        "onlineOpening": true
+      },
+      "status": "active",
+      "rateValidFrom": "2026-09-01"
+    },
+    {
+      "id": "sber-deposit-6m",
+      "bank": {
+        "id": "sber",
+        "name": "Сбербанк",
+        "shortName": "Сбер",
+        "website": "https://www.sberbank.ru/"
+      },
+      "name": "Вклад на 6 месяцев",
+      "type": "deposit",
+      "currency": "RUB",
+      "minAmount": 100000.0,
+      "maxAmount": null,
+      "termMonths": 6,
+      "advertisedRate": 13.0,
+      "effectiveRate": 13.8,
+      "realRate": 5.57,
+      "profitFor100k": 6678.61,
+      "capitalization": true,
+      "replenishment": false,
+      "partialWithdrawal": false,
+      "conditions": {
+        "newCustomer": false,
+        "cardRequired": false,
+        "monthlySpendingRequired": false,
+        "salaryProjectRequired": false,
+        "subscriptionRequired": false,
+        "onlineOpening": true
+      },
+      "status": "active",
+      "rateValidFrom": "2026-09-01"
+    }
+  ]
+}
