@@ -1,7 +1,7 @@
+from decimal import Decimal
 from typing import Literal
 
 from pydantic import BaseModel
-
 
 class ProductTerms(BaseModel):
     replenishment: bool
@@ -11,7 +11,7 @@ class ProductTerms(BaseModel):
 
 class ProductOperations(BaseModel):
     earlyClosureAllowed: bool
-    earlyClosureRate: float
+    earlyClosureRate: Decimal
 
 
 class ProductConditions(BaseModel):
@@ -31,8 +31,8 @@ class Product(BaseModel):
     type: Literal["deposit", "savings-account"]
     currency: str
 
-    minAmount: float
-    maxAmount: float | None
+    minAmount: Decimal
+    maxAmount: Decimal | None
 
     terms: ProductTerms
     operations: ProductOperations

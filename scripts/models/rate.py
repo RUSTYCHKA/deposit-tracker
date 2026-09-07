@@ -1,4 +1,5 @@
 from datetime import date
+from decimal import Decimal
 
 from pydantic import BaseModel
 
@@ -6,7 +7,7 @@ from pydantic import BaseModel
 class RatePeriod(BaseModel):
     fromMonth: int
     toMonth: int
-    annualRate: float
+    annualRate: Decimal
 
 
 class RateSource(BaseModel):
