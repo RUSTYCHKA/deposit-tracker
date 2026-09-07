@@ -1,3 +1,9 @@
+export interface DepositRatePeriod {
+  fromMonth: number;
+  toMonth: number;
+  annualRate: number;
+}
+
 export interface DepositConditions {
   newCustomer: boolean;
   cardRequired: boolean;
@@ -39,6 +45,8 @@ export interface Deposit {
   capitalization: boolean;
   replenishment: boolean;
   partialWithdrawal: boolean;
+
+  ratePeriods: DepositRatePeriod[];
 
   conditions: DepositConditions;
 

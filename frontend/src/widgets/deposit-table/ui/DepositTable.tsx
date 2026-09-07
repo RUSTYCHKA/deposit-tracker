@@ -2,6 +2,8 @@ import type { Deposit } from '@/entities/deposit';
 
 interface DepositTableProps {
   deposits: Deposit[];
+  selectedDepositId?: string;
+  onSelectDeposit: (deposit: Deposit) => void;
 }
 
 function formatRate(value: number): string {
@@ -18,7 +20,11 @@ function getTypeLabel(type: Deposit['type']): string {
     : 'Накопительный счёт';
 }
 
-export function DepositTable({ deposits }: DepositTableProps) {
+export function DepositTable({
+  deposits,
+  selectedDepositId,
+  onSelectDeposit,
+}: DepositTableProps) {
   return (
     <div className="deposit-table-wrapper">
       <table className="deposit-table">
@@ -31,12 +37,20 @@ export function DepositTable({ deposits }: DepositTableProps) {
             <th>Реальная доходность</th>
             <th>Доход с 100 000 ₽</th>
             <th>Условия</th>
+            <th></th>
           </tr>
         </thead>
 
         <tbody>
           {deposits.map((deposit) => (
-            <tr key={deposit.id}>
+            <tr
+              key={deposit.id}
+              className={
+                selectedDepositId === deposit.id
+                  ? 'selected'
+                  : ''
+              }
+            >
               <td>
                 <strong>{deposit.bank.shortName}</strong>
               </td>
@@ -54,9 +68,13 @@ export function DepositTable({ deposits }: DepositTableProps) {
                   {formatRate(deposit.effectiveRate)}
                 </strong>
 
-                {deposit.effectiveRate !== deposit.advertisedRate && (
+                {deposit.effectiveRate !==
+                  deposit.advertisedRate && (
                   <span className="advertised-rate">
-                    заявлено {formatRate(deposit.advertisedRate)}
+                    заявлено{' '}
+                    {formatRate(
+                      deposit.advertisedRate,
+                    )}
                   </span>
                 )}
               </td>
@@ -69,7 +87,10 @@ export function DepositTable({ deposits }: DepositTableProps) {
 
               <td>
                 <strong>
-                  {formatMoney(deposit.profitFor100k)} ₽
+                  {formatMoney(
+                    deposit.profitFor100k,
+                  )}{' '}
+                  ₽
                 </strong>
               </td>
 
@@ -90,9 +111,24 @@ export function DepositTable({ deposits }: DepositTableProps) {
                   {!deposit.capitalization &&
                     !deposit.replenishment &&
                     !deposit.partialWithdrawal && (
-                      <span>Без доп. опций</span>
+                      <span>
+                        Без доп. опций
+                      </span>
                     )}
                 </div>
+              </td>
+
+              <td>
+                <button
+                  className="calculate-button"
+                  onClick={() =>
+                    onSelectDeposit(deposit)
+                  }
+                >
+                  {selectedDepositId === deposit.id
+                    ? 'Выбран'
+                    : 'Рассчитать'}
+                </button>
               </td>
             </tr>
           ))}

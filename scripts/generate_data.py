@@ -174,6 +174,14 @@ def generate():
                 "partialWithdrawal": (
                     product.terms.partialWithdrawal
                 ),
+                "ratePeriods": [
+                    {
+                        "fromMonth": period.fromMonth,
+                        "toMonth": period.toMonth,
+                        "annualRate": period.annualRate,
+                    }
+                    for period in rate.periods
+                ],
                 "conditions": product.conditions.model_dump(),
                 "status": product.status,
                 "rateValidFrom": str(rate.validFrom),

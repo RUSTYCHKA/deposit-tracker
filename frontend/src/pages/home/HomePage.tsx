@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 
-import type { Deposit } from '@/entities/deposit';
+
 import {
   DepositFilters,
   filterDeposits,
@@ -44,6 +44,8 @@ export function HomePage() {
   const [amount, setAmount] = useState(
     '100000',
   );
+  const [selectedDepositId, setSelectedDepositId] =
+  useState<string | undefined>();
 
   const deposits = getDeposits();
   const inflationRate = getInflationRate();
@@ -57,8 +59,11 @@ export function HomePage() {
     return sortDeposits(filtered, sort);
   }, [deposits, filters, sort]);
 
-  const selectedDeposit: Deposit | undefined =
-    filteredDeposits[0];
+    const selectedDeposit =
+    filteredDeposits.find(
+        (deposit) =>
+        deposit.id === selectedDepositId,
+    );
 
   return (
     <main className="page">
@@ -145,7 +150,11 @@ export function HomePage() {
         {filteredDeposits.length > 0 ? (
           <DepositTable
             deposits={filteredDeposits}
-          />
+            selectedDepositId={selectedDepositId}
+            onSelectDeposit={(deposit) =>
+                setSelectedDepositId(deposit.id)
+            }
+            />
         ) : (
           <div className="empty-state">
             <strong>
@@ -162,10 +171,12 @@ export function HomePage() {
 
       {selectedDeposit && (
         <DepositCalculator
-          deposit={selectedDeposit}
-          inflationRate={inflationRate}
+            deposit={selectedDeposit}
+            inflationRate={inflationRate}
+            amount={amount}
+            onAmountChange={setAmount}
         />
-      )}
+        )}
     </main>
   );
 }

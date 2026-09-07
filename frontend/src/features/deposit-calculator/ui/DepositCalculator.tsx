@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo} from 'react';
 
 import type { Deposit } from '@/entities/deposit';
 
@@ -7,6 +7,8 @@ import { calculateProfit } from '../lib/calculateProfit';
 interface DepositCalculatorProps {
   deposit: Deposit;
   inflationRate: number;
+  amount: string;
+  onAmountChange: (amount: string) => void;
 }
 
 function formatMoney(value: number): string {
@@ -18,8 +20,10 @@ function formatMoney(value: number): string {
 export function DepositCalculator({
   deposit,
   inflationRate,
+    amount,
+    onAmountChange,
 }: DepositCalculatorProps) {
-  const [amount, setAmount] = useState("100000");
+  
 
   const calculation = useMemo(
     () =>
@@ -64,7 +68,7 @@ export function DepositCalculator({
             min="0"
             value={amount}
             onChange={(event) =>
-              setAmount(event.target.value)
+              onAmountChange(event.target.value)
             }
           />
 

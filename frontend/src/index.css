@@ -644,3 +644,37 @@ button {
     flex: 1;
   }
 }
+
+
+.calculate-button {
+  padding: 8px 12px;
+
+  border: 1px solid #171717;
+  border-radius: 8px;
+
+  background: #171717;
+  color: white;
+
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.calculate-button:hover {
+  opacity: 0.85;
+}
+
+.deposit-table tbody tr.selected {
+  background: #f5f5f5;
+}
+
+.calculator-hint {
+  margin-top: 24px;
+  padding: 28px;
+
+  border: 1px dashed #d4d4d4;
+  border-radius: 20px;
+
+  text-align: center;
+
+  color: #737373;
+}

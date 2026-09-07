@@ -23,26 +23,38 @@ export function calculateProfit(
     };
   }
 
-  const annualRate = deposit.effectiveRate / 100;
-  const inflation = inflationRate / 100;
+  let finalBalance = principal;
 
-  let finalBalance: number;
+  for (const period of deposit.ratePeriods) {
+    const monthsInPeriod =
+      period.toMonth - period.fromMonth;
 
-  if (deposit.capitalization) {
-    const monthlyRate = annualRate / 12;
+    if (deposit.capitalization) {
+      const monthlyRate =
+        period.annualRate / 100 / 12;
 
-    finalBalance =
-      principal * Math.pow(1 + monthlyRate, months);
-  } else {
-    finalBalance =
-      principal * (1 + annualRate * (months / 12));
+      finalBalance *= Math.pow(
+        1 + monthlyRate,
+        monthsInPeriod,
+      );
+    } else {
+      finalBalance +=
+        principal *
+        (period.annualRate / 100) *
+        (monthsInPeriod / 12);
+    }
   }
 
   const interest = finalBalance - principal;
 
+  const inflation = inflationRate / 100;
+
   const realBalance =
     finalBalance /
-    Math.pow(1 + inflation, months / 12);
+    Math.pow(
+      1 + inflation,
+      months / 12,
+    );
 
   const realProfit = realBalance - principal;
 

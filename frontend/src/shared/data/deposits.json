@@ -23,6 +23,13 @@
       "capitalization": false,
       "replenishment": true,
       "partialWithdrawal": true,
+      "ratePeriods": [
+        {
+          "fromMonth": 0,
+          "toMonth": 12,
+          "annualRate": 14.0
+        }
+      ],
       "conditions": {
         "newCustomer": false,
         "cardRequired": false,
@@ -55,6 +62,13 @@
       "capitalization": true,
       "replenishment": false,
       "partialWithdrawal": false,
+      "ratePeriods": [
+        {
+          "fromMonth": 0,
+          "toMonth": 6,
+          "annualRate": 13.0
+        }
+      ],
       "conditions": {
         "newCustomer": false,
         "cardRequired": false,
