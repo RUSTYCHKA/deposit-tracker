@@ -1,8 +1,8 @@
 from pathlib import Path
 import json
 
-from models.bank import Bank
-from models.product import Product
+from scripts.models.bank import Bank
+from scripts.models.product import Product
 
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
