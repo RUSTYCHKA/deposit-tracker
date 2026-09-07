@@ -1,32 +1,72 @@
 import { useMemo, useState } from 'react';
 
-import { getDeposits, getInflationRate } from '@/entities/deposit/lib/getDeposits';
+import type { Deposit } from '@/entities/deposit';
+import {
+  DepositFilters,
+  filterDeposits,
+  sortDeposits,
+  type DepositFiltersState,
+  type DepositSortConfig,
+} from '@/features/deposit-filter';
+
+import {
+  getDeposits,
+  getInflationRate,
+} from '@/entities/deposit/lib/getDeposits';
+
+import { DepositCalculator } from '@/features/deposit-calculator';
 import { DepositTable } from '@/widgets/deposit-table';
 
-type FilterType = 'all' | 'deposit' | 'savings-account';
+const initialFilters: DepositFiltersState = {
+  type: 'all',
+  capitalization: false,
+  replenishment: false,
+  partialWithdrawal: false,
+  noExtraConditions: false,
+};
+
+const initialSort: DepositSortConfig = {
+  field: 'effectiveRate',
+  direction: 'desc',
+};
 
 export function HomePage() {
-  const [filter, setFilter] = useState<FilterType>('all');
-  const [amount, setAmount] = useState(100000);
+  const [filters, setFilters] =
+    useState<DepositFiltersState>(
+      initialFilters,
+    );
+
+  const [sort, setSort] =
+    useState<DepositSortConfig>(
+      initialSort,
+    );
+
+  const [amount, setAmount] = useState(
+    '100000',
+  );
 
   const deposits = getDeposits();
   const inflationRate = getInflationRate();
 
   const filteredDeposits = useMemo(() => {
-    if (filter === 'all') {
-      return deposits;
-    }
-
-    return deposits.filter(
-      (deposit) => deposit.type === filter,
+    const filtered = filterDeposits(
+      deposits,
+      filters,
     );
-  }, [deposits, filter]);
+
+    return sortDeposits(filtered, sort);
+  }, [deposits, filters, sort]);
+
+  const selectedDeposit: Deposit | undefined =
+    filteredDeposits[0];
 
   return (
     <main className="page">
       <section className="hero">
         <div>
-          <p className="eyebrow">DEPOSIT TRACKER</p>
+          <p className="eyebrow">
+            DEPOSIT TRACKER
+          </p>
 
           <h1>
             Сравнивай вклады
@@ -43,7 +83,10 @@ export function HomePage() {
 
         <div className="hero-stat">
           <span>Текущая инфляция</span>
-          <strong>{inflationRate.toFixed(1)}%</strong>
+
+          <strong>
+            {inflationRate.toFixed(1)}%
+          </strong>
         </div>
       </section>
 
@@ -60,7 +103,7 @@ export function HomePage() {
               min="0"
               value={amount}
               onChange={(event) =>
-                setAmount(Number(event.target.value))
+                setAmount(event.target.value)
               }
             />
 
@@ -69,9 +112,14 @@ export function HomePage() {
         </div>
 
         <div className="calculator-info">
-          Показываем доходность для суммы{' '}
+          Рассчитываем доходность для суммы{' '}
           <strong>
-            {new Intl.NumberFormat('ru-RU').format(amount)} ₽
+            {amount
+              ? new Intl.NumberFormat(
+                  'ru-RU',
+                ).format(Number(amount))
+              : '0'}{' '}
+            ₽
           </strong>
         </div>
       </section>
@@ -85,35 +133,39 @@ export function HomePage() {
               Найдено: {filteredDeposits.length}
             </p>
           </div>
-
-          <div className="filters">
-            <button
-              className={filter === 'all' ? 'active' : ''}
-              onClick={() => setFilter('all')}
-            >
-              Все
-            </button>
-
-            <button
-              className={filter === 'deposit' ? 'active' : ''}
-              onClick={() => setFilter('deposit')}
-            >
-              Вклады
-            </button>
-
-            <button
-              className={
-                filter === 'savings-account' ? 'active' : ''
-              }
-              onClick={() => setFilter('savings-account')}
-            >
-              Накопительные счета
-            </button>
-          </div>
         </div>
 
-        <DepositTable deposits={filteredDeposits} />
+        <DepositFilters
+          filters={filters}
+          sort={sort}
+          onFiltersChange={setFilters}
+          onSortChange={setSort}
+        />
+
+        {filteredDeposits.length > 0 ? (
+          <DepositTable
+            deposits={filteredDeposits}
+          />
+        ) : (
+          <div className="empty-state">
+            <strong>
+              Ничего не найдено
+            </strong>
+
+            <p>
+              Попробуйте изменить параметры
+              фильтрации.
+            </p>
+          </div>
+        )}
       </section>
+
+      {selectedDeposit && (
+        <DepositCalculator
+          deposit={selectedDeposit}
+          inflationRate={inflationRate}
+        />
+      )}
     </main>
   );
 }
