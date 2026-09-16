@@ -1,12 +1,8 @@
-import type { Deposit } from '@/entities/deposit';
+import type { Deposit } from "@/entities/deposit";
 
-export type DepositType = 'all' | Deposit['type'];
+export type DepositType = "all" | Deposit["type"];
 
-export type DepositSort =
-  | 'effectiveRate'
-  | 'realRate'
-  | 'profit'
-  | 'minAmount';
+export type DepositSort = "effectiveRate" | "realRate" | "profit" | "minAmount";
 
 export interface DepositFilters {
   type: DepositType;
@@ -18,5 +14,5 @@ export interface DepositFilters {
 
 export interface DepositSortConfig {
   field: DepositSort;
-  direction: 'asc' | 'desc';
+  direction: "asc" | "desc";
 }

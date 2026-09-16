@@ -1,4 +1,4 @@
-import type { Deposit } from '@/entities/deposit';
+import type { Deposit } from "@/entities/deposit";
 
 export interface DepositCalculation {
   principal: number;
@@ -26,22 +26,15 @@ export function calculateProfit(
   let finalBalance = principal;
 
   for (const period of deposit.ratePeriods) {
-    const monthsInPeriod =
-      period.toMonth - period.fromMonth;
+    const monthsInPeriod = period.toMonth - period.fromMonth;
 
     if (deposit.capitalization) {
-      const monthlyRate =
-        period.annualRate / 100 / 12;
+      const monthlyRate = period.annualRate / 100 / 12;
 
-      finalBalance *= Math.pow(
-        1 + monthlyRate,
-        monthsInPeriod,
-      );
+      finalBalance *= Math.pow(1 + monthlyRate, monthsInPeriod);
     } else {
       finalBalance +=
-        principal *
-        (period.annualRate / 100) *
-        (monthsInPeriod / 12);
+        principal * (period.annualRate / 100) * (monthsInPeriod / 12);
     }
   }
 
@@ -49,12 +42,7 @@ export function calculateProfit(
 
   const inflation = inflationRate / 100;
 
-  const realBalance =
-    finalBalance /
-    Math.pow(
-      1 + inflation,
-      months / 12,
-    );
+  const realBalance = finalBalance / Math.pow(1 + inflation, months / 12);
 
   const realProfit = realBalance - principal;
 

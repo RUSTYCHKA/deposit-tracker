@@ -1,44 +1,29 @@
-import type { Deposit } from '@/entities/deposit';
+import type { Deposit } from "@/entities/deposit";
 
-import type { DepositFilters, DepositSortConfig } from './types';
+import type { DepositFilters, DepositSortConfig } from "./types";
 
 export function filterDeposits(
   deposits: Deposit[],
   filters: DepositFilters,
 ): Deposit[] {
   return deposits.filter((deposit) => {
-    if (
-      filters.type !== 'all' &&
-      deposit.type !== filters.type
-    ) {
+    if (filters.type !== "all" && deposit.type !== filters.type) {
       return false;
     }
 
-    if (
-      filters.capitalization &&
-      !deposit.capitalization
-    ) {
+    if (filters.capitalization && !deposit.capitalization) {
       return false;
     }
 
-    if (
-      filters.replenishment &&
-      !deposit.replenishment
-    ) {
+    if (filters.replenishment && !deposit.replenishment) {
       return false;
     }
 
-    if (
-      filters.partialWithdrawal &&
-      !deposit.partialWithdrawal
-    ) {
+    if (filters.partialWithdrawal && !deposit.partialWithdrawal) {
       return false;
     }
 
-    if (
-      filters.noExtraConditions &&
-      hasExtraConditions(deposit)
-    ) {
+    if (filters.noExtraConditions && hasExtraConditions(deposit)) {
       return false;
     }
 
@@ -46,9 +31,7 @@ export function filterDeposits(
   });
 }
 
-function hasExtraConditions(
-  deposit: Deposit,
-): boolean {
+function hasExtraConditions(deposit: Deposit): boolean {
   const conditions = deposit.conditions;
 
   return (
@@ -74,27 +57,25 @@ export function sortDeposits(
 
     const result = valueA < valueB ? -1 : 1;
 
-    return sort.direction === 'asc'
-      ? result
-      : -result;
+    return sort.direction === "asc" ? result : -result;
   });
 }
 
 function getSortValue(
   deposit: Deposit,
-  field: DepositSortConfig['field'],
+  field: DepositSortConfig["field"],
 ): number {
   switch (field) {
-    case 'effectiveRate':
+    case "effectiveRate":
       return deposit.effectiveRate;
 
-    case 'realRate':
+    case "realRate":
       return deposit.realRate;
 
-    case 'profit':
+    case "profit":
       return deposit.profitFor100k;
 
-    case 'minAmount':
+    case "minAmount":
       return deposit.minAmount;
   }
 }

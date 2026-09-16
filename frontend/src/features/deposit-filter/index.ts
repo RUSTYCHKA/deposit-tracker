@@ -1,11 +1,8 @@
-export { DepositFilters } from './ui/DepositFilters';
+export { DepositFilters } from "./ui/DepositFilters";
 
-export {
-  filterDeposits,
-  sortDeposits,
-} from './lib/filterDeposits';
+export { filterDeposits, sortDeposits } from "./lib/filterDeposits";
 
 export type {
   DepositFilters as DepositFiltersState,
   DepositSortConfig,
-} from './lib/types';
+} from "./lib/types";

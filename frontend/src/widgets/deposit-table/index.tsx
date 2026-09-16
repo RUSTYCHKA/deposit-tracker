@@ -1,1 +1,1 @@
-export { DepositTable } from './ui/DepositTable';
+export { DepositTable } from "./ui/DepositTable";

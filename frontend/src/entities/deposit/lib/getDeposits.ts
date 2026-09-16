@@ -1,6 +1,6 @@
-import type { Deposit } from '../types';
+import type { Deposit } from "../types";
 
-import data from '@/shared/data/deposits.json';
+import data from "@/shared/data/deposits.json";
 
 interface DepositsData {
   generatedAt: string;
@@ -9,7 +9,6 @@ interface DepositsData {
 }
 
 const depositsData = data as DepositsData;
-
 export function getDeposits(): Deposit[] {
   return depositsData.products;
 }

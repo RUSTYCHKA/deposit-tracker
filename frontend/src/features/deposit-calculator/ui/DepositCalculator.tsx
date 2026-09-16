@@ -1,8 +1,8 @@
-import { useMemo} from 'react';
+import { useMemo } from "react";
 
-import type { Deposit } from '@/entities/deposit';
+import type { Deposit } from "@/entities/deposit";
 
-import { calculateProfit } from '../lib/calculateProfit';
+import { calculateProfit } from "../lib/calculateProfit";
 
 interface DepositCalculatorProps {
   deposit: Deposit;
@@ -12,7 +12,7 @@ interface DepositCalculatorProps {
 }
 
 function formatMoney(value: number): string {
-  return new Intl.NumberFormat('ru-RU', {
+  return new Intl.NumberFormat("ru-RU", {
     maximumFractionDigits: 0,
   }).format(value);
 }
@@ -20,18 +20,11 @@ function formatMoney(value: number): string {
 export function DepositCalculator({
   deposit,
   inflationRate,
-    amount,
-    onAmountChange,
+  amount,
+  onAmountChange,
 }: DepositCalculatorProps) {
-  
-
   const calculation = useMemo(
-    () =>
-      calculateProfit(
-        deposit,
-        Number(amount) || 0,
-        inflationRate,
-      ),
+    () => calculateProfit(deposit, Number(amount) || 0, inflationRate),
     [deposit, amount, inflationRate],
   );
 
@@ -39,9 +32,7 @@ export function DepositCalculator({
     <div className="deposit-calculator">
       <div className="deposit-calculator-header">
         <div>
-          <span className="calculator-label">
-            Калькулятор
-          </span>
+          <span className="calculator-label">Калькулятор</span>
 
           <h3>{deposit.name}</h3>
 
@@ -50,16 +41,12 @@ export function DepositCalculator({
 
         <div className="calculator-rate">
           <span>Доходность</span>
-          <strong>
-            {deposit.effectiveRate.toFixed(2)}%
-          </strong>
+          <strong>{deposit.effectiveRate.toFixed(2)}%</strong>
         </div>
       </div>
 
       <div className="calculator-field">
-        <label htmlFor={`deposit-amount-${deposit.id}`}>
-          Сумма
-        </label>
+        <label htmlFor={`deposit-amount-${deposit.id}`}>Сумма</label>
 
         <div className="calculator-input">
           <input
@@ -67,9 +54,7 @@ export function DepositCalculator({
             type="number"
             min="0"
             value={amount}
-            onChange={(event) =>
-              onAmountChange(event.target.value)
-            }
+            onChange={(event) => onAmountChange(event.target.value)}
           />
 
           <span>₽</span>
@@ -79,30 +64,22 @@ export function DepositCalculator({
       <div className="calculator-results">
         <div className="result">
           <span>Срок</span>
-          <strong>
-            {deposit.termMonths} мес.
-          </strong>
+          <strong>{deposit.termMonths} мес.</strong>
         </div>
 
         <div className="result">
           <span>Доход</span>
-          <strong>
-            +{formatMoney(calculation.interest)} ₽
-          </strong>
+          <strong>+{formatMoney(calculation.interest)} ₽</strong>
         </div>
 
         <div className="result result-main">
           <span>Итоговая сумма</span>
-          <strong>
-            {formatMoney(calculation.finalBalance)} ₽
-          </strong>
+          <strong>{formatMoney(calculation.finalBalance)} ₽</strong>
         </div>
 
         <div className="result">
           <span>С учётом инфляции</span>
-          <strong>
-            {formatMoney(calculation.realProfit)} ₽
-          </strong>
+          <strong>{formatMoney(calculation.realProfit)} ₽</strong>
         </div>
       </div>
     </div>

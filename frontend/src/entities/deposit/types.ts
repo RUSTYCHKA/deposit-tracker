@@ -27,7 +27,7 @@ export interface Deposit {
 
   name: string;
 
-  type: 'deposit' | 'savings-account';
+  type: "deposit" | "savings-account";
 
   currency: string;
 
@@ -50,7 +50,7 @@ export interface Deposit {
 
   conditions: DepositConditions;
 
-  status: 'active' | 'inactive';
+  status: "active" | "inactive";
 
   rateValidFrom: string;
 }

@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import type { Deposit } from '@/entities/deposit';
+import type { Deposit } from "@/entities/deposit";
 
 interface DepositTableProps {
   deposits: Deposit[];
@@ -13,13 +13,11 @@ function formatRate(value: number): string {
 }
 
 function formatMoney(value: number): string {
-  return new Intl.NumberFormat('ru-RU').format(value);
+  return new Intl.NumberFormat("ru-RU").format(value);
 }
 
-function getTypeLabel(type: Deposit['type']): string {
-  return type === 'deposit'
-    ? 'Вклад'
-    : 'Накопительный счёт';
+function getTypeLabel(type: Deposit["type"]): string {
+  return type === "deposit" ? "Вклад" : "Накопительный счёт";
 }
 
 export function DepositTable({
@@ -48,21 +46,14 @@ export function DepositTable({
             {deposits.map((deposit) => (
               <tr
                 key={deposit.id}
-                className={
-                  selectedDepositId === deposit.id
-                    ? 'selected'
-                    : ''
-                }
+                className={selectedDepositId === deposit.id ? "selected" : ""}
               >
                 <td>
                   <strong>{deposit.bank.shortName}</strong>
                 </td>
 
                 <td>
-                  <Link
-                    to={`/deposit/${deposit.id}`}
-                    className="deposit-link"
-                  >
+                  <Link to={`/deposit/${deposit.id}`} className="deposit-link">
                     {deposit.name}
                   </Link>
                 </td>
@@ -78,66 +69,41 @@ export function DepositTable({
                     {formatRate(deposit.effectiveRate)}
                   </strong>
 
-                  {deposit.effectiveRate !==
-                    deposit.advertisedRate && (
+                  {deposit.effectiveRate !== deposit.advertisedRate && (
                     <span className="advertised-rate">
-                      заявлено{' '}
-                      {formatRate(
-                        deposit.advertisedRate,
-                      )}
+                      заявлено {formatRate(deposit.advertisedRate)}
                     </span>
                   )}
                 </td>
 
                 <td>
-                  <strong>
-                    {formatRate(deposit.realRate)}
-                  </strong>
+                  <strong>{formatRate(deposit.realRate)}</strong>
                 </td>
 
                 <td>
-                  <strong>
-                    {formatMoney(
-                      deposit.profitFor100k,
-                    )}{' '}
-                    ₽
-                  </strong>
+                  <strong>{formatMoney(deposit.profitFor100k)} ₽</strong>
                 </td>
 
                 <td>
                   <div className="conditions">
-                    {deposit.capitalization && (
-                      <span>Капитализация</span>
-                    )}
+                    {deposit.capitalization && <span>Капитализация</span>}
 
-                    {deposit.replenishment && (
-                      <span>Пополнение</span>
-                    )}
+                    {deposit.replenishment && <span>Пополнение</span>}
 
-                    {deposit.partialWithdrawal && (
-                      <span>Снятие</span>
-                    )}
+                    {deposit.partialWithdrawal && <span>Снятие</span>}
 
                     {!deposit.capitalization &&
                       !deposit.replenishment &&
-                      !deposit.partialWithdrawal && (
-                        <span>
-                          Без доп. опций
-                        </span>
-                      )}
+                      !deposit.partialWithdrawal && <span>Без доп. опций</span>}
                   </div>
                 </td>
 
                 <td>
                   <button
                     className="calculate-button"
-                    onClick={() =>
-                      onSelectDeposit(deposit)
-                    }
+                    onClick={() => onSelectDeposit(deposit)}
                   >
-                    {selectedDepositId === deposit.id
-                      ? 'Выбран'
-                      : 'Рассчитать'}
+                    {selectedDepositId === deposit.id ? "Выбран" : "Рассчитать"}
                   </button>
                 </td>
               </tr>
@@ -151,8 +117,8 @@ export function DepositTable({
           <article
             className={
               selectedDepositId === deposit.id
-                ? 'deposit-card selected'
-                : 'deposit-card'
+                ? "deposit-card selected"
+                : "deposit-card"
             }
             key={deposit.id}
           >
@@ -170,58 +136,39 @@ export function DepositTable({
                 </Link>
               </div>
 
-              <span className="type-badge">
-                {getTypeLabel(deposit.type)}
-              </span>
+              <span className="type-badge">{getTypeLabel(deposit.type)}</span>
             </div>
 
             <div className="deposit-card-rate">
               <span>Эффективная ставка</span>
 
-              <strong>
-                {formatRate(deposit.effectiveRate)}
-              </strong>
+              <strong>{formatRate(deposit.effectiveRate)}</strong>
             </div>
 
             <div className="deposit-card-stats">
               <div>
                 <span>Реальная доходность</span>
 
-                <strong>
-                  {formatRate(deposit.realRate)}
-                </strong>
+                <strong>{formatRate(deposit.realRate)}</strong>
               </div>
 
               <div>
                 <span>Доход с 100 000 ₽</span>
 
-                <strong>
-                  +{formatMoney(
-                    deposit.profitFor100k,
-                  )}{' '}
-                  ₽
-                </strong>
+                <strong>+{formatMoney(deposit.profitFor100k)} ₽</strong>
               </div>
             </div>
 
             <div className="deposit-card-conditions">
-              {deposit.capitalization && (
-                <span>Капитализация</span>
-              )}
+              {deposit.capitalization && <span>Капитализация</span>}
 
-              {deposit.replenishment && (
-                <span>Пополнение</span>
-              )}
+              {deposit.replenishment && <span>Пополнение</span>}
 
-              {deposit.partialWithdrawal && (
-                <span>Снятие</span>
-              )}
+              {deposit.partialWithdrawal && <span>Снятие</span>}
 
               {!deposit.capitalization &&
                 !deposit.replenishment &&
-                !deposit.partialWithdrawal && (
-                  <span>Без доп. опций</span>
-                )}
+                !deposit.partialWithdrawal && <span>Без доп. опций</span>}
             </div>
 
             <div className="deposit-card-footer">
@@ -234,13 +181,9 @@ export function DepositTable({
 
               <button
                 className="calculate-button"
-                onClick={() =>
-                  onSelectDeposit(deposit)
-                }
+                onClick={() => onSelectDeposit(deposit)}
               >
-                {selectedDepositId === deposit.id
-                  ? 'Выбран'
-                  : 'Рассчитать'}
+                {selectedDepositId === deposit.id ? "Выбран" : "Рассчитать"}
               </button>
             </div>
           </article>

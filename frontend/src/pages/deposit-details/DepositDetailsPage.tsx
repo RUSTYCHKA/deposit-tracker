@@ -1,20 +1,18 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams } from "react-router-dom";
 
 import {
   getDeposits,
   getInflationRate,
-} from '@/entities/deposit/lib/getDeposits';
+} from "@/entities/deposit/lib/getDeposits";
 
-import { DepositDetailsCalculator } from '@/widgets/deposit-details-calculator';
+import { DepositDetailsCalculator } from "@/widgets/deposit-details-calculator";
 
 function formatMoney(value: number): string {
-  return new Intl.NumberFormat('ru-RU').format(value);
+  return new Intl.NumberFormat("ru-RU").format(value);
 }
 
-function getTypeLabel(type: 'deposit' | 'savings-account'): string {
-  return type === 'deposit'
-    ? 'Вклад'
-    : 'Накопительный счёт';
+function getTypeLabel(type: "deposit" | "savings-account"): string {
+  return type === "deposit" ? "Вклад" : "Накопительный счёт";
 }
 
 export function DepositDetailsPage() {
@@ -23,9 +21,7 @@ export function DepositDetailsPage() {
   const deposits = getDeposits();
   const inflationRate = getInflationRate();
 
-  const deposit = deposits.find(
-    (item) => item.id === id,
-  );
+  const deposit = deposits.find((item) => item.id === id);
 
   if (!deposit) {
     return (
@@ -35,10 +31,7 @@ export function DepositDetailsPage() {
         <div className="empty-state">
           <strong>Продукт не найден</strong>
 
-          <p>
-            Возможно, продукт был удалён или его
-            идентификатор изменился.
-          </p>
+          <p>Возможно, продукт был удалён или его идентификатор изменился.</p>
         </div>
       </main>
     );
@@ -46,33 +39,24 @@ export function DepositDetailsPage() {
 
   return (
     <main className="page">
-      <Link
-        to="/"
-        className="back-link"
-      >
+      <Link to="/" className="back-link">
         ← Все продукты
       </Link>
 
       <section className="deposit-details">
         <div className="deposit-details-header">
           <div>
-            <span className="eyebrow">
-              {getTypeLabel(deposit.type)}
-            </span>
+            <span className="eyebrow">{getTypeLabel(deposit.type)}</span>
 
             <h1>{deposit.name}</h1>
 
-            <p className="deposit-bank">
-              {deposit.bank.name}
-            </p>
+            <p className="deposit-bank">{deposit.bank.name}</p>
           </div>
 
           <div className="deposit-main-rate">
             <span>Эффективная ставка</span>
 
-            <strong>
-              {deposit.effectiveRate.toFixed(2)}%
-            </strong>
+            <strong>{deposit.effectiveRate.toFixed(2)}%</strong>
           </div>
         </div>
 
@@ -80,25 +64,19 @@ export function DepositDetailsPage() {
           <div>
             <span>Заявленная ставка</span>
 
-            <strong>
-              {deposit.advertisedRate.toFixed(2)}%
-            </strong>
+            <strong>{deposit.advertisedRate.toFixed(2)}%</strong>
           </div>
 
           <div>
             <span>Реальная доходность</span>
 
-            <strong>
-              {deposit.realRate.toFixed(2)}%
-            </strong>
+            <strong>{deposit.realRate.toFixed(2)}%</strong>
           </div>
 
           <div>
             <span>Срок</span>
 
-            <strong>
-              {deposit.termMonths} мес.
-            </strong>
+            <strong>{deposit.termMonths} мес.</strong>
           </div>
 
           <div>
@@ -106,7 +84,7 @@ export function DepositDetailsPage() {
 
             <strong>
               {deposit.minAmount === 0
-                ? 'Без минимума'
+                ? "Без минимума"
                 : `${formatMoney(deposit.minAmount)} ₽`}
             </strong>
           </div>
@@ -120,40 +98,26 @@ export function DepositDetailsPage() {
               <div>
                 <span>Капитализация</span>
 
-                <strong>
-                  {deposit.capitalization
-                    ? 'Да'
-                    : 'Нет'}
-                </strong>
+                <strong>{deposit.capitalization ? "Да" : "Нет"}</strong>
               </div>
 
               <div>
                 <span>Пополнение</span>
 
-                <strong>
-                  {deposit.replenishment
-                    ? 'Да'
-                    : 'Нет'}
-                </strong>
+                <strong>{deposit.replenishment ? "Да" : "Нет"}</strong>
               </div>
 
               <div>
                 <span>Частичное снятие</span>
 
-                <strong>
-                  {deposit.partialWithdrawal
-                    ? 'Да'
-                    : 'Нет'}
-                </strong>
+                <strong>{deposit.partialWithdrawal ? "Да" : "Нет"}</strong>
               </div>
 
               <div>
                 <span>Онлайн-открытие</span>
 
                 <strong>
-                  {deposit.conditions.onlineOpening
-                    ? 'Да'
-                    : 'Нет'}
+                  {deposit.conditions.onlineOpening ? "Да" : "Нет"}
                 </strong>
               </div>
             </div>
@@ -166,20 +130,14 @@ export function DepositDetailsPage() {
               <div>
                 <span>Только новым клиентам</span>
 
-                <strong>
-                  {deposit.conditions.newCustomer
-                    ? 'Да'
-                    : 'Нет'}
-                </strong>
+                <strong>{deposit.conditions.newCustomer ? "Да" : "Нет"}</strong>
               </div>
 
               <div>
                 <span>Требуется карта</span>
 
                 <strong>
-                  {deposit.conditions.cardRequired
-                    ? 'Да'
-                    : 'Нет'}
+                  {deposit.conditions.cardRequired ? "Да" : "Нет"}
                 </strong>
               </div>
 
@@ -187,10 +145,7 @@ export function DepositDetailsPage() {
                 <span>Требуются траты в месяц</span>
 
                 <strong>
-                  {deposit.conditions
-                    .monthlySpendingRequired
-                    ? 'Да'
-                    : 'Нет'}
+                  {deposit.conditions.monthlySpendingRequired ? "Да" : "Нет"}
                 </strong>
               </div>
 
@@ -198,10 +153,7 @@ export function DepositDetailsPage() {
                 <span>Требуется зарплатный проект</span>
 
                 <strong>
-                  {deposit.conditions
-                    .salaryProjectRequired
-                    ? 'Да'
-                    : 'Нет'}
+                  {deposit.conditions.salaryProjectRequired ? "Да" : "Нет"}
                 </strong>
               </div>
 
@@ -209,10 +161,7 @@ export function DepositDetailsPage() {
                 <span>Требуется подписка</span>
 
                 <strong>
-                  {deposit.conditions
-                    .subscriptionRequired
-                    ? 'Да'
-                    : 'Нет'}
+                  {deposit.conditions.subscriptionRequired ? "Да" : "Нет"}
                 </strong>
               </div>
             </div>
@@ -223,9 +172,8 @@ export function DepositDetailsPage() {
           <h2>Из чего складывается доходность</h2>
 
           <p className="details-description">
-            Ставка может изменяться в течение срока
-            размещения. Поэтому итоговая доходность
-            рассчитывается по каждому периоду отдельно.
+            Ставка может изменяться в течение срока размещения. Поэтому итоговая
+            доходность рассчитывается по каждому периоду отдельно.
           </p>
 
           <div className="rate-period-list">
@@ -235,28 +183,23 @@ export function DepositDetailsPage() {
                 key={`${period.fromMonth}-${period.toMonth}`}
               >
                 <span>
-                  {period.fromMonth + 1}–{period.toMonth}{' '}
-                  месяц
+                  {period.fromMonth + 1}–{period.toMonth} месяц
                 </span>
 
-                <strong>
-                  {period.annualRate.toFixed(2)}%
-                </strong>
+                <strong>{period.annualRate.toFixed(2)}%</strong>
               </div>
             ))}
           </div>
         </section>
-        
+
         <DepositDetailsCalculator
-            deposit={deposit}
-            inflationRate={inflationRate}
+          deposit={deposit}
+          inflationRate={inflationRate}
         />
 
         <p className="data-source">
-          Данные актуальны на{' '}
-          {new Date(
-            deposit.rateValidFrom,
-          ).toLocaleDateString('ru-RU')}
+          Данные актуальны на{" "}
+          {new Date(deposit.rateValidFrom).toLocaleDateString("ru-RU")}
         </p>
       </section>
     </main>

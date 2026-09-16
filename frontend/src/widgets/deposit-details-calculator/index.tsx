@@ -1,1 +1,1 @@
-export { DepositDetailsCalculator } from './ui/DepositDetailsCalculator';
+export { DepositDetailsCalculator } from "./ui/DepositDetailsCalculator";

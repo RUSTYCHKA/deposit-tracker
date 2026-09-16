@@ -158,7 +158,6 @@ button {
   display: none;
 }
 
-
 .products {
   background: white;
   border: 1px solid #e5e5e5;
@@ -340,7 +339,6 @@ button {
   }
 }
 
-
 /* Deposit calculator */
 
 .deposit-calculator {
@@ -503,7 +501,6 @@ button {
   }
 }
 
-
 /* Filters */
 
 .deposit-filters {
@@ -648,7 +645,6 @@ button {
     flex: 1;
   }
 }
-
 
 .calculate-button {
   padding: 8px 12px;
@@ -928,24 +924,21 @@ button {
   }
 
   .details-calculator-results {
-  grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .details-calculator-results > div:nth-child(2) {
+    border-right: 0;
+  }
+
+  .details-calculator-results > div:nth-child(-n + 2) {
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .details-calculator-results > div:first-child {
+    padding-left: 20px;
+  }
 }
-
-.details-calculator-results > div:nth-child(2) {
-  border-right: 0;
-}
-
-.details-calculator-results > div:nth-child(-n + 2) {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.details-calculator-results > div:first-child {
-  padding-left: 20px;
-}
-
-
-}
-
 
 .details-calculator {
   margin-top: 24px;
